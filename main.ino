@@ -15,7 +15,7 @@ void sunrise()
     for(int i = 64; i <= 255; i++){
         analogWrite(LEDPIN, i);
         if (i == 255) digitalWrite(LEDPIN, HIGH);
-        Alarm.delay(15);
+        Alarm.delay(10);
    } 
 }
 
