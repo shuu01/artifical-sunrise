@@ -2,6 +2,7 @@
 #include <RTClib.h> // https://github.com/adafruit/RTClib
 
 RTC_DS1307 rtc;
+#define LEDPIN 9;
 
 uint32_t sync_provider()
 {
@@ -11,6 +12,11 @@ uint32_t sync_provider()
 
 void sunrise()
 {
+    for(int i = 64; i <= 255; i++){
+        analogWrite(LEDPIN, i);
+        if (i == 255) digitalWrite(LEDPIN, HIGH);
+        Alarm.delay(15);
+   } 
 }
 
 void setup()
@@ -23,6 +29,8 @@ void setup()
     /// timelib setup
     setSyncProvider(sync_provider);
     setSyncInterval(60);
+    pinMode(LEDPIN, OUTPUT);
+    Alarm.alarmRepeat(6, 30, 0, sunrise);
     
 void loop()
 {
