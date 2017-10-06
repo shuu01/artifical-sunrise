@@ -3,6 +3,11 @@
 
 RTC_DS1307 rtc;
 #define LEDPIN 9;
+#define ON 8;
+#define SUN 7;
+
+int state = 0;
+int laststate = 0;
 
 uint32_t sync_provider()
 {
@@ -12,6 +17,7 @@ uint32_t sync_provider()
 
 void sunrise()
 {
+    if (digitalRead(SUN) == LOW) return 0;
     for(int i = 64; i <= 255; i++){
         analogWrite(LEDPIN, i);
         if (i == 255) digitalWrite(LEDPIN, HIGH);
@@ -29,10 +35,20 @@ void setup()
     /// timelib setup
     setSyncProvider(sync_provider);
     setSyncInterval(60);
+    
     pinMode(LEDPIN, OUTPUT);
+    pinMode(ON, INPUT);
+    pinMode(SUN, INPUT);
+    
     Alarm.alarmRepeat(6, 30, 0, sunrise);
     
 void loop()
 {
-    Alarm.delay(0);
+    Alarm.delay(1000);
+    state = digitalRead(ON);
+    if (state != laststate){
+        if (state == HIGH) {digitalWrite(LEDPIN, HIGH);}
+        else {digitalWrite(LEDPIN, LOW);}
+    }
+    laststate = state;
 }
