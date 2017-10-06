@@ -23,6 +23,7 @@ void sunrise()
         if (i == 255) digitalWrite(LEDPIN, HIGH);
         Alarm.delay(10);
    } 
+   
 }
 
 void setup()
