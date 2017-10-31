@@ -41,7 +41,7 @@ void setup()
     pinMode(ON, INPUT);
     pinMode(SUN, INPUT);
     
-    Alarm.alarmRepeat(6, 30, 0, sunrise);
+    Alarm.alarmRepeat(6, 0, 0, sunrise);
     
 void loop()
 {
