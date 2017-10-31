@@ -1,10 +1,11 @@
 #include <TimeAlarms.h> // https://github.com/PaulStoffregen/TimeAlarms & https://github.com/PaulStoffregen/Time
 #include <RTClib.h> // https://github.com/adafruit/RTClib
 
+#define LEDPIN 9
+#define ON 8
+#define SUN 7
 RTC_DS1307 rtc;
-#define LEDPIN 9;
-#define ON 8;
-#define SUN 7;
+
 
 int state = 0;
 int laststate = 0;
