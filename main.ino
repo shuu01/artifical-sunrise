@@ -18,7 +18,7 @@ uint32_t sync_provider()
 
 void sunrise()
 {
-    if (digitalRead(SUN) == LOW){ 
+    if (digitalRead(SUN) == HIGH){ 
         for(int i = 64; i <= 255; i++){
             analogWrite(LEDPIN, i);
             if (i == 255) digitalWrite(LEDPIN, HIGH);
