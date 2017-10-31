@@ -18,11 +18,12 @@ uint32_t sync_provider()
 
 void sunrise()
 {
-    if (digitalRead(SUN) == LOW) return 0;
-    for(int i = 64; i <= 255; i++){
-        analogWrite(LEDPIN, i);
-        if (i == 255) digitalWrite(LEDPIN, HIGH);
-        Alarm.delay(10000);
+    if (digitalRead(SUN) == LOW){ 
+        for(int i = 64; i <= 255; i++){
+            analogWrite(LEDPIN, i);
+            if (i == 255) digitalWrite(LEDPIN, HIGH);
+            Alarm.delay(10000);
+        }
    } 
    
 }
@@ -43,7 +44,8 @@ void setup()
     pinMode(SUN, INPUT);
     
     Alarm.alarmRepeat(6, 0, 0, sunrise);
-    
+}
+
 void loop()
 {
     Alarm.delay(1000);
