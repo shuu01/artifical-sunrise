@@ -4,9 +4,8 @@
 #define LEDPIN 9
 #define ON 8
 #define SUN 7
+
 RTC_DS1307 rtc;
-
-
 int state = 0;
 int laststate = 0;
 
